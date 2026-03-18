@@ -1,0 +1,96 @@
+/* ===== Board Layout ===== */
+.board {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== Columns ===== */
+.board__columns {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.board__column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3vw 4vw;
+}
+
+.board__column--preparing {
+  background-color: #f5edd6;
+}
+
+.board__column--ready {
+  background-color: #d6e8d0;
+}
+
+/* ===== Title ===== */
+.board__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: #2d4a2d;
+  margin: 0 0 2vw 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.board__icon {
+  font-size: 0.85em;
+}
+
+/* ===== Numbers Grid ===== */
+.board__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2vw 2.5vw;
+  width: 100%;
+  max-width: 500px;
+}
+
+.board__number {
+  font-weight: 900;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  color: #2d4a2d;
+  text-align: center;
+  padding: 0.3em 0;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Bottom Banner ===== */
+.board__banner {
+  position: relative;
+  height: 14vh;
+  min-height: 80px;
+  background: 
+    url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.board__banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.25), rgba(0,0,0,0.15));
+}
+
+.board__logo {
+  position: relative;
+  z-index: 1;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  color: #f5edd6;
+  padding-right: 3vw;
+  text-shadow: 1px 2px 6px rgba(0,0,0,0.4);
+}
