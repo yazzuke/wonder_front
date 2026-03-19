@@ -49,7 +49,7 @@ export default function CreateOrder() {
     e.preventDefault();
     const validItems = items.filter((item) => item.product_id);
     if (validItems.length === 0) {
-      setMessage({ type: 'error', text: 'Agrega al menos un producto' });
+      setMessage({ type: 'error', text: 'Add at least one product' });
       return;
     }
 
@@ -66,7 +66,7 @@ export default function CreateOrder() {
         })),
         total: parseFloat(total.toFixed(2)),
       });
-      setMessage({ type: 'success', text: `Pedido #${order.order_number} creado` });
+      setMessage({ type: 'success', text: `Order #${order.order_number} created` });
       setCustomerName('');
       setNotes('');
       setItems([{ product_id: '', quantity: 1, unit_price: 0 }]);
@@ -79,7 +79,7 @@ export default function CreateOrder() {
 
   return (
     <div className="create-order">
-      <h1 className="page-title">Nuevo Pedido</h1>
+      <h1 className="page-title">New Order</h1>
 
       {message && (
         <div className={`alert alert--${message.type}`}>{message.text}</div>
@@ -88,23 +88,23 @@ export default function CreateOrder() {
       <form onSubmit={handleSubmit} className="order-form">
         <div className="form-row">
           <label className="form-label">
-            Nombre del cliente
+            Customer Name
             <input
               type="text"
               className="form-input"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="Opcional"
+              placeholder="Optional"
             />
           </label>
           <label className="form-label">
-            Notas
+            Notes
             <input
               type="text"
               className="form-input"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Ej: sin cebolla, extra salsa"
+              placeholder="e.g. no onions, extra sauce"
             />
           </label>
         </div>
@@ -119,7 +119,7 @@ export default function CreateOrder() {
                 value={item.product_id}
                 onChange={(e) => handleProductChange(index, e.target.value)}
               >
-                <option value="">Seleccionar producto...</option>
+                <option value="">Select product...</option>
                 {products.map((p) => (
                   <option key={p.id} value={p.id}>
                     {p.name} — ${p.price}
@@ -144,7 +144,7 @@ export default function CreateOrder() {
                 className="btn btn--icon btn--danger"
                 onClick={() => removeItem(index)}
                 disabled={items.length <= 1}
-                title="Quitar item"
+                title="Remove item"
               >
                 ✕
               </button>
@@ -153,7 +153,7 @@ export default function CreateOrder() {
         </div>
 
         <button type="button" className="btn btn--outline" onClick={addItem}>
-          + Agregar item
+          + Add Item
         </button>
 
         <div className="order-total">
@@ -161,7 +161,7 @@ export default function CreateOrder() {
         </div>
 
         <button type="submit" className="btn btn--primary" disabled={loading}>
-          {loading ? 'Creando...' : 'Crear Pedido'}
+          {loading ? 'Creating...' : 'Create Order'}
         </button>
       </form>
     </div>

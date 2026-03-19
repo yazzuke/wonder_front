@@ -91,7 +91,7 @@ export default function OrderManagement() {
           disabled={actionLoading === order.id}
           onClick={() => changeStatus(order.id, 'cancelled')}
         >
-          Cancelar
+          Cancel
         </button>
       </div>
     </div>
@@ -100,31 +100,31 @@ export default function OrderManagement() {
   return (
     <div className="order-mgmt">
       <div className="order-mgmt__header">
-        <h1 className="page-title">Gestión de Pedidos</h1>
-        <button className="btn btn--outline" onClick={load}>🔄 Refrescar</button>
+        <h1 className="page-title">Order Management</h1>
+        <button className="btn btn--outline" onClick={load}>🔄 Refresh</button>
       </div>
 
       <div className="order-mgmt__board">
         <section className="order-mgmt__col order-mgmt__col--preparing">
           <h2 className="order-mgmt__col-title">
-            👨‍🍳 Preparando ({preparing.length})
+            👨‍🍳 Preparing ({preparing.length})
           </h2>
           <div className="order-mgmt__cards">
             {preparing.map((o) => <OrderCard key={o.id} order={o} />)}
             {preparing.length === 0 && (
-              <p className="order-mgmt__empty">Sin pedidos en preparación</p>
+              <p className="order-mgmt__empty">No orders in preparation</p>
             )}
           </div>
         </section>
 
         <section className="order-mgmt__col order-mgmt__col--ready">
           <h2 className="order-mgmt__col-title">
-            🍽️ Listos ({ready.length})
+            🍽️ Ready ({ready.length})
           </h2>
           <div className="order-mgmt__cards">
             {ready.map((o) => <OrderCard key={o.id} order={o} />)}
             {ready.length === 0 && (
-              <p className="order-mgmt__empty">Sin pedidos listos</p>
+              <p className="order-mgmt__empty">No orders ready</p>
             )}
           </div>
         </section>

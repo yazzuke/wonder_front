@@ -55,7 +55,7 @@ export default function Products() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.price) {
-      setMessage({ type: 'error', text: 'Nombre y precio son requeridos' });
+      setMessage({ type: 'error', text: 'Name and price are required' });
       return;
     }
     setLoading(true);
@@ -68,10 +68,10 @@ export default function Products() {
       };
       if (editing) {
         await updateProduct(editing, payload);
-        setMessage({ type: 'success', text: 'Producto actualizado' });
+        setMessage({ type: 'success', text: 'Product updated' });
       } else {
         await createProduct(payload);
-        setMessage({ type: 'success', text: 'Producto creado' });
+        setMessage({ type: 'success', text: 'Product created' });
       }
       await load();
       setForm(EMPTY_FORM);
@@ -85,7 +85,7 @@ export default function Products() {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('¿Eliminar este producto?')) return;
+    if (!confirm('Delete this product?')) return;
     try {
       await deleteProduct(id);
       await load();
@@ -97,8 +97,8 @@ export default function Products() {
   return (
     <div className="products-page">
       <div className="products-page__header">
-        <h1 className="page-title">Productos</h1>
-        <button className="btn btn--primary" onClick={openCreate}>+ Nuevo Producto</button>
+        <h1 className="page-title">Products</h1>
+        <button className="btn btn--primary" onClick={openCreate}>+ New Product</button>
       </div>
 
       {message && (
@@ -107,14 +107,14 @@ export default function Products() {
 
       {showForm && (
         <form className="product-form" onSubmit={handleSubmit}>
-          <h2 className="section-title">{editing ? 'Editar Producto' : 'Nuevo Producto'}</h2>
+          <h2 className="section-title">{editing ? 'Edit Product' : 'New Product'}</h2>
           <div className="product-form__grid">
             <label className="form-label">
-              Nombre *
+              Name *
               <input className="form-input" name="name" value={form.name} onChange={handleChange} />
             </label>
             <label className="form-label">
-              Precio *
+              Price *
               <input className="form-input" name="price" type="number" step="0.01" min="0" value={form.price} onChange={handleChange} />
             </label>
             <label className="form-label">
@@ -126,24 +126,24 @@ export default function Products() {
               <input className="form-input" name="sku" value={form.sku} onChange={handleChange} />
             </label>
             <label className="form-label">
-              Categoría
+              Category
               <input className="form-input" name="category" value={form.category} onChange={handleChange} />
             </label>
             <label className="form-label">
-              URL Imagen
+              Image URL
               <input className="form-input" name="image_url" value={form.image_url} onChange={handleChange} />
             </label>
             <label className="form-label form-label--full">
-              Descripción
+              Description
               <textarea className="form-input" name="description" rows="2" value={form.description} onChange={handleChange} />
             </label>
           </div>
           <div className="product-form__actions">
             <button type="submit" className="btn btn--primary" disabled={loading}>
-              {loading ? 'Guardando...' : editing ? 'Guardar cambios' : 'Crear'}
+              {loading ? 'Saving...' : editing ? 'Save Changes' : 'Create'}
             </button>
             <button type="button" className="btn btn--outline" onClick={() => setShowForm(false)}>
-              Cancelar
+              Cancel
             </button>
           </div>
         </form>
@@ -152,11 +152,11 @@ export default function Products() {
       <table className="products-table">
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Categoría</th>
-            <th>Precio</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
             <th>Stock</th>
-            <th>Acciones</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -171,14 +171,14 @@ export default function Products() {
               <td>{p.stock ?? '—'}</td>
               <td>
                 <div className="products-table__actions">
-                  <button className="btn btn--sm btn--outline" onClick={() => openEdit(p)}>Editar</button>
-                  <button className="btn btn--sm btn--danger" onClick={() => handleDelete(p.id)}>Eliminar</button>
+                  <button className="btn btn--sm btn--outline" onClick={() => openEdit(p)}>Edit</button>
+                  <button className="btn btn--sm btn--danger" onClick={() => handleDelete(p.id)}>Delete</button>
                 </div>
               </td>
             </tr>
           ))}
           {products.length === 0 && (
-            <tr><td colSpan="5" className="products-table__empty">No hay productos</td></tr>
+            <tr><td colSpan="5" className="products-table__empty">No products found</td></tr>
           )}
         </tbody>
       </table>

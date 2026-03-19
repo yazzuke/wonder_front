@@ -8,16 +8,16 @@ export default function Layout() {
         <div className="sidebar__brand">Wonder</div>
         <nav className="sidebar__nav">
           <NavLink to="/orders/new" className="sidebar__link">
-            ➕ Nuevo Pedido
+            ➕ New Order
           </NavLink>
           <NavLink to="/orders" end className="sidebar__link">
-            📋 Gestión Pedidos
+            📋 Manage Orders
           </NavLink>
           <NavLink to="/products" className="sidebar__link">
-            🍔 Productos
+            🍔 Products
           </NavLink>
           <NavLink to="/board" className="sidebar__link">
-            📺 Pantalla
+            📺 Display
           </NavLink>
         </nav>
       </aside>
