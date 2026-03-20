@@ -21,7 +21,7 @@ export default function CreateOrder() {
     setItems((prev) =>
       prev.map((item, i) =>
         i === index
-          ? { ...item, product_id: productId, unit_price: product ? product.price : 0 }
+          ? { ...item, product_id: productId, unit_price: product ? Number(product.price) : 0 }
           : item
       )
     );
@@ -122,7 +122,7 @@ export default function CreateOrder() {
                 <option value="">Select product...</option>
                 {products.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} — ${p.price}
+                    {p.name} — ${Number(p.price).toFixed(2)}
                   </option>
                 ))}
               </select>

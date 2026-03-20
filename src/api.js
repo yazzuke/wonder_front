@@ -67,3 +67,58 @@ export async function updateOrderStatus(id, status) {
   if (!json.success) throw new Error(json.message || 'Error updating order status');
   return json.data;
 }
+
+// ===== Menu Items =====
+
+export async function fetchMenuItems(filters = {}) {
+  const params = new URLSearchParams();
+  if (filters.menu) params.set('menu', filters.menu);
+  if (filters.category) params.set('category', filters.category);
+  const query = params.toString() ? `?${params}` : '';
+  const res = await fetch(`${API_URL}/api/menu-items${query}`);
+  const json = await res.json();
+  if (!json.success) throw new Error(json.message || 'Error fetching menu items');
+  return json.data;
+}
+
+export async function createMenuItem(item) {
+  const res = await fetch(`${API_URL}/api/menu-items`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(item),
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.message || 'Error creating menu item');
+  return json.data;
+}
+
+export async function updateMenuItem(id, item) {
+  const res = await fetch(`${API_URL}/api/menu-items/${encodeURIComponent(id)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(item),
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.message || 'Error updating menu item');
+  return json.data;
+}
+
+export async function toggleMenuItemStock(id, inStock) {
+  const res = await fetch(`${API_URL}/api/menu-items/${encodeURIComponent(id)}/stock`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ in_stock: inStock }),
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.message || 'Error toggling stock');
+  return json.data;
+}
+
+export async function deleteMenuItem(id) {
+  const res = await fetch(`${API_URL}/api/menu-items/${encodeURIComponent(id)}`, {
+    method: 'DELETE',
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.message || 'Error deleting menu item');
+  return json.data;
+}

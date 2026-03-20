@@ -1,0 +1,158 @@
+.menu-items-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.menu-items-page__header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ===== Filters ===== */
+.mi-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.mi-filters .form-select {
+  min-width: 160px;
+}
+
+/* ===== Form ===== */
+.mi-form {
+  background: #fff;
+  border: 1.5px solid #e0e8dc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mi-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.form-label--check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #2d4a2d;
+  font-size: 0.85rem;
+  padding-top: 1.3rem;
+}
+
+.form-label--check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2d4a2d;
+}
+
+.mi-form__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ===== Table ===== */
+.mi-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.mi-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: #2d4a2d;
+  color: #f5edd6;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mi-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.mi-table tbody tr:hover {
+  background: #f0f7ed;
+}
+
+.mi-table__name {
+  font-weight: 600;
+  color: #2d4a2d;
+}
+
+.mi-table__actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.mi-table__empty {
+  text-align: center;
+  color: #999;
+  padding: 2rem !important;
+}
+
+/* ===== Badge ===== */
+.mi-badge {
+  display: inline-block;
+  background: #e8f0e4;
+  color: #2d4a2d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: lowercase;
+}
+
+/* ===== Stock Toggle ===== */
+.stock-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.stock-toggle--on {
+  background: #3d8b3d;
+}
+
+.stock-toggle--off {
+  background: #d35050;
+}
+
+.stock-toggle__dot {
+  position: absolute;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: left 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.stock-toggle--on .stock-toggle__dot {
+  left: 23px;
+}
+
+.stock-toggle--off .stock-toggle__dot {
+  left: 3px;
+}

@@ -4,6 +4,7 @@ import OrderBoard from './components/OrderBoard';
 import CreateOrder from './pages/CreateOrder';
 import OrderManagement from './pages/OrderManagement';
 import Products from './pages/Products';
+import MenuItems from './pages/MenuItems';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/orders/new" element={<CreateOrder />} />
           <Route path="/orders" element={<OrderManagement />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/menu-items" element={<MenuItems />} />
         </Route>
 
         {/* Redirect root */}

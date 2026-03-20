@@ -16,6 +16,9 @@ export default function Layout() {
           <NavLink to="/products" className="sidebar__link">
             🍔 Products
           </NavLink>
+          <NavLink to="/menu-items" className="sidebar__link">
+            📜 Menu Items
+          </NavLink>
           <NavLink to="/board" className="sidebar__link">
             📺 Display
           </NavLink>
