@@ -56,7 +56,7 @@ export default function OrderManagement() {
       <ul className="order-card__items">
         {order.items?.map((item, i) => (
           <li key={i}>
-            {item.quantity}× {item.product?.name || item.product_name || `Producto #${item.product_id}`}
+            {item.quantity}× {item.menu_item?.name || item.product?.name || item.product_name || item.menu_item_name || `Item #${item.menu_item_id || item.product_id}`}
           </li>
         ))}
       </ul>
