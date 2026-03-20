@@ -74,7 +74,7 @@ export default function OrderManagement() {
             disabled={actionLoading === order.id}
             onClick={() => changeStatus(order.id, 'ready')}
           >
-            ✅ Marcar Ready
+            ✅ Ready
           </button>
         )}
         {order.status === 'ready' && (
@@ -83,7 +83,7 @@ export default function OrderManagement() {
             disabled={actionLoading === order.id}
             onClick={() => changeStatus(order.id, 'delivered')}
           >
-            🎉 Marcar Delivered
+            🎉 Delivered
           </button>
         )}
         <button

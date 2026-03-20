@@ -1,27 +1,27 @@
 import { useState, useEffect } from 'react';
-import { fetchProducts, createOrder } from '../api';
+import { fetchMenuItems, createOrder } from '../api';
 import './CreateOrder.css';
 
 export default function CreateOrder() {
-  const [products, setProducts] = useState([]);
+  const [menuItems, setMenuItems] = useState([]);
   const [customerName, setCustomerName] = useState('');
   const [notes, setNotes] = useState('');
-  const [items, setItems] = useState([{ product_id: '', quantity: 1, unit_price: 0 }]);
+  const [items, setItems] = useState([{ menu_item_id: '', quantity: 1, unit_price: 0 }]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    fetchProducts()
-      .then(setProducts)
+    fetchMenuItems()
+      .then(setMenuItems)
       .catch((err) => console.error(err));
   }, []);
 
-  const handleProductChange = (index, productId) => {
-    const product = products.find((p) => p.id === Number(productId));
+  const handleProductChange = (index, menuItemId) => {
+    const mi = menuItems.find((m) => m.id === Number(menuItemId));
     setItems((prev) =>
       prev.map((item, i) =>
         i === index
-          ? { ...item, product_id: productId, unit_price: product ? Number(product.price) : 0 }
+          ? { ...item, menu_item_id: menuItemId, unit_price: mi ? Number(mi.price) || 0 : 0 }
           : item
       )
     );
@@ -35,7 +35,7 @@ export default function CreateOrder() {
   };
 
   const addItem = () => {
-    setItems((prev) => [...prev, { product_id: '', quantity: 1, unit_price: 0 }]);
+    setItems((prev) => [...prev, { menu_item_id: '', quantity: 1, unit_price: 0 }]);
   };
 
   const removeItem = (index) => {
@@ -47,9 +47,9 @@ export default function CreateOrder() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validItems = items.filter((item) => item.product_id);
+    const validItems = items.filter((item) => item.menu_item_id);
     if (validItems.length === 0) {
-      setMessage({ type: 'error', text: 'Add at least one product' });
+      setMessage({ type: 'error', text: 'Add at least one item' });
       return;
     }
 
@@ -60,7 +60,7 @@ export default function CreateOrder() {
         customer_name: customerName || undefined,
         notes: notes || undefined,
         items: validItems.map((item) => ({
-          product_id: Number(item.product_id),
+          menu_item_id: Number(item.menu_item_id),
           quantity: item.quantity,
           unit_price: item.unit_price,
         })),
@@ -69,7 +69,7 @@ export default function CreateOrder() {
       setMessage({ type: 'success', text: `Order #${order.order_number} created` });
       setCustomerName('');
       setNotes('');
-      setItems([{ product_id: '', quantity: 1, unit_price: 0 }]);
+      setItems([{ menu_item_id: '', quantity: 1, unit_price: 0 }]);
     } catch (err) {
       setMessage({ type: 'error', text: err.message });
     } finally {
@@ -116,13 +116,13 @@ export default function CreateOrder() {
             <div key={index} className="item-row">
               <select
                 className="form-select"
-                value={item.product_id}
+                value={item.menu_item_id}
                 onChange={(e) => handleProductChange(index, e.target.value)}
               >
-                <option value="">Select product...</option>
-                {products.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name} — ${Number(p.price).toFixed(2)}
+                <option value="">Select item...</option>
+                {menuItems.map((mi) => (
+                  <option key={mi.id} value={mi.id}>
+                    {mi.name}{mi.category ? ` [${mi.category}]` : ''} — ${Number(mi.price || 0).toFixed(2)}
                   </option>
                 ))}
               </select>
