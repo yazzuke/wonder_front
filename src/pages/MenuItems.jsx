@@ -204,10 +204,6 @@ export default function MenuItems() {
               <input className="form-input" name="category" value={form.category} onChange={handleChange} />
             </label>
             <label className="form-label">
-              Parent Group
-              <input className="form-input" name="parent_group" value={form.parent_group} onChange={handleChange} />
-            </label>
-            <label className="form-label">
               Name *
               <input className="form-input" name="name" value={form.name} onChange={handleChange} />
             </label>

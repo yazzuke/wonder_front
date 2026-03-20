@@ -16,12 +16,14 @@ export default function CreateOrder() {
       .catch((err) => console.error(err));
   }, []);
 
+  const parsePrice = (val) => Number(String(val || '').replace(/[^0-9.]/g, '')) || 0;
+
   const handleProductChange = (index, menuItemId) => {
-    const mi = menuItems.find((m) => m.id === Number(menuItemId));
+    const mi = menuItems.find((m) => String(m.id) === String(menuItemId));
     setItems((prev) =>
       prev.map((item, i) =>
         i === index
-          ? { ...item, menu_item_id: menuItemId, unit_price: mi ? Number(mi.price) || 0 : 0 }
+          ? { ...item, menu_item_id: menuItemId, unit_price: mi ? parsePrice(mi.price) : 0 }
           : item
       )
     );
@@ -122,7 +124,7 @@ export default function CreateOrder() {
                 <option value="">Select item...</option>
                 {menuItems.map((mi) => (
                   <option key={mi.id} value={mi.id}>
-                    {mi.name}{mi.category ? ` [${mi.category}]` : ''} — ${Number(mi.price || 0).toFixed(2)}
+                    {mi.name}{mi.category ? ` [${mi.category}]` : ''} — ${parsePrice(mi.price).toFixed(2)}
                   </option>
                 ))}
               </select>
